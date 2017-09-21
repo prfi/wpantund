@@ -75,6 +75,7 @@ NCPInstanceBase::NCPInstanceBase(const Settings& settings):
 	mNodeType = UNKNOWN;
 	mNodeTypeSupportsLegacy = false;
 	mSetDefaultRouteForAutoAddedPrefix = false;
+	mSetSLAACForAutoAddedPrefix = false;
 	mTerminateOnFault = false;
 	mWasBusy = false;
 
@@ -278,6 +279,7 @@ NCPInstanceBase::get_supported_property_keys(void) const
 	properties.insert(kWPANTUNDProperty_DaemonReadyForHostSleep);
 	properties.insert(kWPANTUNDProperty_DaemonTerminateOnFault);
 	properties.insert(kWPANTUNDProperty_DaemonSetDefRouteForAutoAddedPrefix);
+	properties.insert(kWPANTUNDProperty_DaemonSetSLAACForAutoAddedPrefix);
 
 	properties.insert(kWPANTUNDProperty_NestLabs_NetworkAllowingJoin);
 
@@ -382,6 +384,9 @@ NCPInstanceBase::property_get_value(
 
 	} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_DaemonSetDefRouteForAutoAddedPrefix)) {
 		cb(0, boost::any(mSetDefaultRouteForAutoAddedPrefix));
+
+	} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_DaemonSetSLAACForAutoAddedPrefix)) {
+		cb(0, boost::any(mSetSLAACForAutoAddedPrefix));
 
 	} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_NestLabs_NetworkPassthruPort)) {
 		cb(0, boost::any(mCommissionerPort));
@@ -592,6 +597,10 @@ NCPInstanceBase::property_set_value(
 
 		} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_DaemonSetDefRouteForAutoAddedPrefix)) {
 			mSetDefaultRouteForAutoAddedPrefix = any_to_bool(value);
+			cb(0);
+
+		} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_DaemonSetSLAACForAutoAddedPrefix)
+			mSetSLAACForAutoAddedPrefix = any_to_bool(value);
 			cb(0);
 
 		} else if (strcaseequal(key.c_str(), kWPANTUNDProperty_IPv6MeshLocalPrefix)

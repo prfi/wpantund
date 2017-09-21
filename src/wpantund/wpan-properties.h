@@ -48,6 +48,7 @@
 #define kWPANTUNDProperty_DaemonAutoDeepSleep                   "Daemon:AutoDeepSleep"
 #define kWPANTUNDProperty_DaemonFaultReason                     "Daemon:FaultReason"
 #define kWPANTUNDProperty_DaemonSetDefRouteForAutoAddedPrefix   "Daemon:SetDefaultRouteForAutoAddedPrefix"
+#define kWPANTUNDProperty_DaemonSetSLAACForAutoAddedPrefix      "Daemon:SetSLAACForAutoAddedPrefix"
 
 #define kWPANTUNDProperty_NCPVersion                            "NCP:Version"
 #define kWPANTUNDProperty_NCPState                              "NCP:State"
